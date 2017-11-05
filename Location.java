@@ -8,7 +8,7 @@ import java.util.List;
  * ... If this function returns true then all information will be present 
  * ... If this function is false then some information may be missing
  * ... If information is missing because the location is not scanned
- * then the corresponding function will return null
+ *     then the corresponding function will return null
  
  * isTeamOneStart returns true if the location is the starting point for Team 1
  * isTeamTwoStart returns true if the location is the starting point for Team 2

@@ -22,6 +22,7 @@ public class CSS implements PlayerTeam{
         theCSSTeam.add(number2);
         theCSSTeam.add(number3);
         theCSSTeam.add(number4);
+        return theCSSTeam;
     }
 
     /** 

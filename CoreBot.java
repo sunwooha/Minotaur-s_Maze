@@ -24,4 +24,20 @@ public class CoreBot implements Robot{
     public boolean isTeamOne(){
         return (ourTeam.teamOne);
     }
+
+    public DirType move(){
+
+    }
+
+    public List<DirType> getVision(){
+
+    }
+    
+    public void pickCoin(){
+
+    }
+
+    public Location retreat(){
+        
+    }
 }
