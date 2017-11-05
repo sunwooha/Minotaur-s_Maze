@@ -14,11 +14,11 @@ public class GameState{
     public int total_coins;
 
     public GameState(int x, int y, int turn, int team1, int team2, int tot){
-	maze_size_x = x;
-	maze_size_y = y;
-	turns_remaining = turn;
-	team_one_coins = team1;
-	team_two_coins = team2;
-	total_coins = tot;
+        maze_size_x = x;
+        maze_size_y = y;
+        turns_remaining = turn;
+        team_one_coins = team1;
+        team_two_coins = team2;
+        total_coins = tot;
     }
 }
