@@ -1,5 +1,6 @@
 public class CSS implements PlayerTeam{
     boolean teamOne;
+    GameState theState;
 
     public CSS(){
     
@@ -11,7 +12,16 @@ public class CSS implements PlayerTeam{
      * */
     public List<Robot> chooseTeam(boolean teamOne, GameState state){
         this.teamOne = teamOne;
-        
+        this.theState = state;
+        List<Robot> theCSSTeam = new List();
+        CoreBot number1 = new CoreBot();
+        CoreBot number2 = new CoreBot();
+        CoreBot number3 = new CoreBot();
+        CoreBot number4 = new CoreBot();
+        theCSSTeam.add(number1);
+        theCSSTeam.add(number2);
+        theCSSTeam.add(number3);
+        theCSSTeam.add(number4);
     }
 
     /** 
