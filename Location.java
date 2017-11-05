@@ -17,12 +17,12 @@ import java.util.List;
 //... (0,0) is the north-west corner of the maze
 
 public interface Location{
-    public List<Robot> getCoins();
-    public List<CoinType> getRobots();
-    public List<DirType> getDirections();
+    public List<CoinType> getCoins();
+    public List<Robot> getRobots();
+    public List<DirType> getDirections(); 
     public int getX();
     public int getY();
-    public boolean isScanned();
-    public boolean isTeamOneStart();
+    public boolean isScanned(); 
+    public boolean isTeamOneStart(); 
     public boolean isTeamTwoStart();
 }
