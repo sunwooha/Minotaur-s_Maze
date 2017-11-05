@@ -3,6 +3,7 @@ import java.util.Random;
 public class CoreBot implements Robot{
     Random rand = new Random();
     ChooseTeam ourTeam = new ChooseTeam();
+    int size = 3;
 
     public CoreBot(){
 
@@ -21,7 +22,22 @@ public class CoreBot implements Robot{
     }
 
     public boolean isTeamOne(){
-        return ()
+        return (ourTeam.teamOne);
+    }
 
+    public DirType move(){
+
+    }
+
+    public List<DirType> getVision(){
+
+    }
+    
+    public void pickCoin(){
+
+    }
+
+    public Location retreat(){
+        
     }
 }
