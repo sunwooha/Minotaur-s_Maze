@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.util.*;
 
 public class CoreBot implements Robot{
     Random rand = new Random();
@@ -10,14 +10,14 @@ public class CoreBot implements Robot{
     }
 
     public ModelType getModel(){
-        ModelType type = CoreBot;
+        ModelType type = ModelType.CoreBot;
         return type;
     }
 
     public int getID(){
         int max = 999;
         int min = 100;
-        int id = rand.nexInt((max - min) + 1) + min;
+        int id = rand.nextInt((max - min) + 1) + min;
         return id;
     }
 
