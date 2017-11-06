@@ -2,7 +2,13 @@ import java.util.*;
 
 public class CoreBot implements Robot{
     Random rand = new Random();
-    ChooseTeam ourTeam = new ChooseTeam();
+    /* 
+     * ChooseTeam is a function, not a class... I have no clue how this is
+     * supposed to work, but this was preventing me from compiling,
+     * so I commented it out for now.
+     * 
+     * ChooseTeam ourTeam = new ChooseTeam();
+     * */
     int size = 3;
 
     public CoreBot(){
@@ -22,7 +28,13 @@ public class CoreBot implements Robot{
     }
 
     public boolean isTeamOne(){
-        return (ourTeam.teamOne);
+        /*
+         * (Same as above)
+         * 
+         * return (ourTeam.teamOne);
+         * */
+         
+         return true; //for now
     }
 
     public DirType move(){
@@ -45,17 +57,21 @@ public class CoreBot implements Robot{
 		else if (dir == 4) {
 			return DirType.West;
 		}
+		else {
+			return DirType.North;
+		}
     }
 
     public List<DirType> getVision(){
-
+		List<DirType> knownLocations = new ArrayList();
+		return knownLocations;
     }
     
     public void pickCoin(){
 
     }
 
-    public Location retreat(){
-        
+    public void retreat(Location homeBase){
+		
     }
 }
