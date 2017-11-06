@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class CSS implements PlayerTeam{
     boolean teamOne;
     GameState theState;
@@ -13,7 +15,7 @@ public class CSS implements PlayerTeam{
     public List<Robot> chooseTeam(boolean teamOne, GameState state){
         this.teamOne = teamOne;
         this.theState = state;
-        List<Robot> theCSSTeam = new List();
+        List<Robot> theCSSTeam = new ArrayList<Robot>();
         CoreBot number1 = new CoreBot();
         CoreBot number2 = new CoreBot();
         CoreBot number3 = new CoreBot();
@@ -30,7 +32,8 @@ public class CSS implements PlayerTeam{
      * This function should return one Command for each robot awaiting command
      * */
     public List<Command> requestCommands(List<Location> information, List<Robot> robotsAwaitingCommand, GameState state){
-
+		List<Command> ourCommands = new ArrayList<Command>();
+		return ourCommands;
     }
 
 }

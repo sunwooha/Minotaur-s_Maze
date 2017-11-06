@@ -63,7 +63,7 @@ public class CoreBot implements Robot{
     }
 
     public List<DirType> getVision(){
-		List<DirType> knownLocations = new ArrayList();
+		List<DirType> knownLocations = new ArrayList<DirType>();
 		return knownLocations;
     }
     
