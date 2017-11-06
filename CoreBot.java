@@ -1,26 +1,22 @@
 import java.util.*;
 
 public class CoreBot extends CSSRobot{
-	/* 
-     * ChooseTeam is a function, not a class... I have no clue how this is
-     * supposed to work, but this was preventing me from compiling,
-     * so I commented it out for now.
-     * 
-     * ChooseTeam ourTeam = new ChooseTeam();
-     * */
-    ModelType model = ModelType.CoreBot;
-    int size = 3;
-    Location current_location;
-    List<CoinType> coinTypes = new ArrayList<CoinType>();
-
-    public CoreBot(){
+	
+	// Constructor
+    public CoreBot(boolean teamOne){
+		model = ModelType.CoreBot;
+		size = 3;
+		is_teamOne = teamOne;
+		
+		// CoreBots can pick up all coin types
 		coinTypes.add(CoinType.Bronze);
 		coinTypes.add(CoinType.Silver);
 		coinTypes.add(CoinType.Gold);
 		coinTypes.add(CoinType.Diamond);
     }
 	
-	public DirType move(){
+	// Determine how CoreBots move
+	public DirType move(List<Location> info, GameState state){
 		
 		// Random movement as a placeholder until we figure out something better
 		
