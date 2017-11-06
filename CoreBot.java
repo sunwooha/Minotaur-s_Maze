@@ -1,43 +1,26 @@
 import java.util.*;
 
-public class CoreBot implements Robot{
-    Random rand = new Random();
-    /* 
+public class CoreBot extends CSSRobot{
+	/* 
      * ChooseTeam is a function, not a class... I have no clue how this is
      * supposed to work, but this was preventing me from compiling,
      * so I commented it out for now.
      * 
      * ChooseTeam ourTeam = new ChooseTeam();
      * */
+    ModelType model = ModelType.CoreBot;
     int size = 3;
+    Location current_location;
+    List<CoinType> coinTypes = new ArrayList<CoinType>();
 
     public CoreBot(){
-
+		coinTypes.add(CoinType.Bronze);
+		coinTypes.add(CoinType.Silver);
+		coinTypes.add(CoinType.Gold);
+		coinTypes.add(CoinType.Diamond);
     }
-
-    public ModelType getModel(){
-        ModelType type = ModelType.CoreBot;
-        return type;
-    }
-
-    public int getID(){
-        int max = 999;
-        int min = 100;
-        int id = rand.nextInt((max - min) + 1) + min;
-        return id;
-    }
-
-    public boolean isTeamOne(){
-        /*
-         * (Same as above)
-         * 
-         * return (ourTeam.teamOne);
-         * */
-         
-         return true; //for now
-    }
-
-    public DirType move(){
+	
+	public DirType move(){
 		
 		// Random movement as a placeholder until we figure out something better
 		
@@ -60,18 +43,5 @@ public class CoreBot implements Robot{
 		else {
 			return DirType.North;
 		}
-    }
-
-    public List<DirType> getVision(){
-		List<DirType> knownLocations = new ArrayList<DirType>();
-		return knownLocations;
-    }
-    
-    public void pickCoin(){
-
-    }
-
-    public void retreat(Location homeBase){
-		
     }
 }
