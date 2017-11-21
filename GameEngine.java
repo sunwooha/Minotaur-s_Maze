@@ -16,8 +16,8 @@ class GameEngine{
 		GameEngine engine = new GameEngine();
 		engine.execution = new StandardExecution();
 
-		engine.team1 = new TestTeam();
-		engine.team2 = new TestTeam();
+		engine.team1 = new TestTeam(); // replace with CSS
+		engine.team2 = new TestTeam(); // replace with CSS
 
 		engine.startGame();
 		engine.runGame();

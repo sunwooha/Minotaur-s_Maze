@@ -10,21 +10,21 @@ public class TestRobot implements Robot{
     boolean t1;
 
     public ModelType getModel(){
-	return m;
+	    return m;
     }
 
     public int getID(){
-	return id;
+	    return id;
     }
 
     public boolean isTeamOne(){
-	return t1;
+	    return t1;
     }
     
     public TestRobot(ModelType the_model, int the_id, boolean is_team1){
-	m = the_model;
-	id = the_id;
-	t1 = is_team1;
+        m = the_model;
+        id = the_id;
+        t1 = is_team1;
     }
 
 }
