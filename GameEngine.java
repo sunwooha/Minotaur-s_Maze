@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 class GameEngine{
-    final int NUM_TURNS = 15;
+    final int NUM_TURNS = 12;
     final boolean FULL_VISION = false;
 
     PlayerTeam team1;
@@ -84,14 +84,31 @@ class GameEngine{
 	    System.out.print("Turns Remaining: ");
 	    System.out.println(state.turns_remaining);
 	    // *******************
+
+
+            // REGULAR PART OF THE TURN	    
+	    team1_ready = getReadyRobots(true, false);
+	    team2_ready = getReadyRobots(false, false);
 	    
-	    team1_ready = getReadyRobots(true);
-	    team2_ready = getReadyRobots(false);
+	    team1_cmds = team1.requestCommands(scan1_locations,team1_ready , state.clone());
+	    team2_cmds = team2.requestCommands(scan2_locations,team2_ready , state.clone());
+	    
+	    addFreeCommands(team1_cmds, getTeamRobots(true));
+	    addFreeCommands(team2_cmds, getTeamRobots(false));
+
+	    execution.executeCommands(the_maze, team1_cmds, team2_cmds, state);
+
+
+            // EXTRA PART OF THE TURN FOR FAST ROBOTS	    
+	    team1_ready = getReadyRobots(true, true);
+	    team2_ready = getReadyRobots(false, true);
 	    
 	    team1_cmds = team1.requestCommands(scan1_locations,team1_ready , state.clone());
 	    team2_cmds = team2.requestCommands(scan2_locations,team2_ready , state.clone());
 	    
 	    execution.executeCommands(the_maze, team1_cmds, team2_cmds, state);
+
+
 
 	    state.turns_remaining = state.turns_remaining - 1;
 	    if (state.turns_remaining == 0){
@@ -136,10 +153,21 @@ class GameEngine{
 	return scan_info;
     }
 
-    List<Robot> getReadyRobots(boolean teamOne){
+    void addFreeCommands(List<Command> cmds, List<MazeRobot> bots){
+	for(MazeRobot r : bots){
+	    Command free = r.freeCommand(the_maze);
+	    if (free != null){
+		cmds.add(free);
+	    }
+	}
+    }
+
+    List<Robot> getReadyRobots(boolean teamOne, boolean extra_turn){
 	List<Robot> ready_bots = new ArrayList<Robot>();
 	for(MazeRobot the_bot : getTeamRobots(teamOne)){
-	    ready_bots.add(new EmptyRobot(the_bot));
+	    if (the_bot.isReady(extra_turn)){
+		ready_bots.add(new EmptyRobot(the_bot));
+	    }
 	}
 	return ready_bots;
     }
