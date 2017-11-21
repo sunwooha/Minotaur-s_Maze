@@ -25,30 +25,30 @@ public class TestTeam implements PlayerTeam{
 
     public List<Command> requestCommands(List<Location> information, List<Robot> robotsAwaitingCommand, GameState state){
 	
-	List<Command> cmds = new ArrayList<Command>();
-		for(Robot r: robotsAwaitingCommand){
-			int num = rand.nextInt(4);
-			int flip = rand.nextInt(2);
-			DirType dir = null;
+		List<Command> cmds = new ArrayList<Command>();
+			for(Robot r: robotsAwaitingCommand){
+				int num = rand.nextInt(4);
+				int flip = rand.nextInt(2);
+				DirType dir = null;
 
-			switch(num){
-				case 0: dir = DirType.North;
-					break;
-				case 1: dir = DirType.South;
-					break;
-				case 2: dir = DirType.East;
-					break;
-				case 3: dir = DirType.West;
-					break;
+				switch(num){
+					case 0: dir = DirType.North;
+						break;
+					case 1: dir = DirType.South;
+						break;
+					case 2: dir = DirType.East;
+						break;
+					case 3: dir = DirType.West;
+						break;
+				}
+				
+				if (flip ==0){
+					cmds.add(new CommandCoin(r));
+				}
+				else {
+					cmds.add(new CommandMove(r, dir));
+				}
 			}
-			
-			if (flip ==0){
-				cmds.add(new CommandCoin(r));
-			}
-			else {
-				cmds.add(new CommandMove(r, dir));
-			}
-		}
 		return cmds;
-		}
+	}
 }
