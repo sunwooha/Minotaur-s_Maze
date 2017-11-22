@@ -41,9 +41,23 @@ public class CSS implements PlayerTeam{
     // Asks a CSSRobot for its desired command
     public Command getCommand(Robot r, List<Location> info, GameState state) {
 		Command com;
+		System.out.println("test");
+		
+		if (r.getModel() == ModelType.CoreBot) {
+			System.out.println("test3");
+		}
+		
+		if (r instanceof CSSRobot) {
+			System.out.println("hi");
+		}
+		
+		if (r instanceof CoreBot) {
+			System.out.println("hello");
+		}
 		
 		if (r == bot1) {
 			com = bot1.choose_command(info, state);
+			System.out.println("test2");
 		}
 		else if (r == bot2) {
 			com = bot2.choose_command(info, state);
