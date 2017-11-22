@@ -3,18 +3,21 @@ import java.util.*;
 public class CoreBot extends CSSRobot{
 	
 	// Constructor
-    public CoreBot(boolean teamOne){
+    public CoreBot(int the_id, boolean teamOne){
 		model = ModelType.CoreBot;
-		size = 3;
+		id = the_id;
 		is_teamOne = teamOne;
 		
 		// CoreBots can pick up all coin types
+		/*
 		coinTypes.add(CoinType.Bronze);
 		coinTypes.add(CoinType.Silver);
 		coinTypes.add(CoinType.Gold);
 		coinTypes.add(CoinType.Diamond);
+		* */
     }
 	
+	/*
 	// Determine how CoreBots move
 	public DirType move(List<Location> info, GameState state){
 		
@@ -40,4 +43,5 @@ public class CoreBot extends CSSRobot{
 			return DirType.North;
 		}
     }
+    * */
 }

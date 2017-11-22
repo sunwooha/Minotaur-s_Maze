@@ -3,6 +3,7 @@ import java.util.*;
 public class CSS implements PlayerTeam{
     boolean teamOne;
     GameState theState;
+    Random rand;
     
     // List of robots on the team (getCommand() only works if this is defined as a list of CSSRobots, not just Robots)
     List<CSSRobot> teamComp = new ArrayList<CSSRobot>();
@@ -11,10 +12,6 @@ public class CSS implements PlayerTeam{
     CSSRobot bot3;
     CSSRobot bot4;
 
-    public CSS(){
-    
-    }
-
     /**
      * chooseTeam is called once at the very start of the game
      * This function should return the robots the player wants to use during the game
@@ -22,13 +19,14 @@ public class CSS implements PlayerTeam{
     // Creates two lists with the same contents: a list of CSSRobots (teamComp) and a list of Robots (theCSSTeam)
     // This is necessary for getCommand() to work
     public List<Robot> chooseTeam(boolean teamOne, GameState state){
+		rand = new Random();
         this.teamOne = teamOne;
         this.theState = state;
         List<Robot> theCSSTeam = new ArrayList<Robot>();
-        bot1 = new CoreBot(teamOne);
-        bot2 = new CoreBot(teamOne);
-        bot3 = new CoreBot(teamOne);
-        bot4 = new CoreBot(teamOne);
+        bot1 = new CoreBot(7, teamOne);
+        bot2 = new CoreBot(8, teamOne);
+        bot3 = new CoreBot(9, teamOne);
+        bot4 = new CoreBot(10, teamOne);
         teamComp.add(bot1);
         teamComp.add(bot2);
         teamComp.add(bot3);
@@ -40,6 +38,7 @@ public class CSS implements PlayerTeam{
         return theCSSTeam;
     }
     
+    /*
     // Asks a CSSRobot for its desired command
     public Command getCommand(Robot r, List<Location> info, GameState state) {
 		Command com;
@@ -62,6 +61,7 @@ public class CSS implements PlayerTeam{
 		
 		return com;
 	}
+	* */
 
     /** 
      * requestCommands is called each turn
@@ -71,10 +71,36 @@ public class CSS implements PlayerTeam{
     public List<Command> requestCommands(List<Location> information, List<Robot> robotsAwaitingCommand, GameState state){
 		List<Command> ourCommands = new ArrayList<Command>();
 		
+		for(Robot r: robotsAwaitingCommand){
+			int num = rand.nextInt(4);
+			int flip = rand.nextInt(2);
+			DirType dir = null;
+
+			switch(num){
+				case 0: dir = DirType.North;
+				break;
+				case 1: dir = DirType.South;
+				break;
+				case 2: dir = DirType.East;
+				break;
+				case 3: dir = DirType.West;
+				break;
+			}
+	    
+			if (flip ==0){
+				ourCommands.add(new CommandMove(r, dir));
+			}
+			else {
+				ourCommands.add(new CommandMove(r, dir));
+			}
+		}
+		
+		/*
 		for(Robot bot : robotsAwaitingCommand) {
 			Command com = this.getCommand(bot, information, state);
 			ourCommands.add(com);
 		}
+		*/
 		
 		return ourCommands;
     }

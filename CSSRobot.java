@@ -4,7 +4,7 @@ public abstract class CSSRobot implements Robot {
 	
 	Random rand = new Random();
 	ModelType model;
-	int size;
+	int id;
 	boolean is_teamOne;
 	
 	// Not sure how to connect current_location to the game engine
@@ -17,18 +17,24 @@ public abstract class CSSRobot implements Robot {
 		return model;
 	}
 	
-	// Randomly determine the robot's ID
+	// Return the robot's ID
 	public int getID() {
+		return id;
+	}
+	
+	// Randomly determine the robot's ID
+	public void newID() {
 		int max = 999;
         int min = 100;
-        int id = rand.nextInt((max - min) + 1) + min;
-        return id;
+        int idnum = rand.nextInt((max - min) + 1) + min;
+        id = idnum;
 	}
 	
 	public boolean isTeamOne() {
 		return is_teamOne;
 	}
 	
+	/*
 	// Choose a command for the robot
 	public Command choose_command(List<Location> info, GameState state) {
 		if (this.canPickup() == true) {
@@ -56,9 +62,5 @@ public abstract class CSSRobot implements Robot {
 	
 	// Different robot types should choose their moves in different ways based on different criteria, hence why this method is abstract
 	public abstract DirType move(List<Location> info, GameState state);
-    
-    // Not sure how retreating will be implemented
-    public void retreat(Location homeBase){
-		current_location = homeBase;
-    }
+    */
 }

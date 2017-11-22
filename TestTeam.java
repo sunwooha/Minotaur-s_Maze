@@ -13,42 +13,46 @@ public class TestTeam implements PlayerTeam{
     Random rand;
 
     public List<Robot> chooseTeam(boolean teamOne, GameState state){
-		rand = new Random();
-		bots = new ArrayList<Robot>();
-		bots.add(new TestRobot(ModelType.CoreBot, 11, teamOne));
-		bots.add(new TestRobot(ModelType.CoreBot, 12, teamOne));
-		bots.add(new TestRobot(ModelType.CoreBot, 13, teamOne));
-		bots.add(new TestRobot(ModelType.CoreBot, 14, teamOne));
-		return bots;
+	rand = new Random();
+	bots = new ArrayList<Robot>();
+	bots.add(new TestRobot(ModelType.HippoBot, 11, teamOne));
+	bots.add(new TestRobot(ModelType.CoreBot, 12, teamOne));
+	bots.add(new TestRobot(ModelType.RabbitBot, 13, teamOne));
+	bots.add(new TestRobot(ModelType.FalconBot, 14, teamOne));
+	return bots;
     }
 
 
     public List<Command> requestCommands(List<Location> information, List<Robot> robotsAwaitingCommand, GameState state){
 	
-		List<Command> cmds = new ArrayList<Command>();
-			for(Robot r: robotsAwaitingCommand){
-				int num = rand.nextInt(4);
-				int flip = rand.nextInt(2);
-				DirType dir = null;
+	List<Command> cmds = new ArrayList<Command>();
+	for(Robot r: robotsAwaitingCommand){
+	    int num = rand.nextInt(4);
+	    int flip = rand.nextInt(2);
+	    DirType dir = null;
 
-				switch(num){
-					case 0: dir = DirType.North;
-						break;
-					case 1: dir = DirType.South;
-						break;
-					case 2: dir = DirType.East;
-						break;
-					case 3: dir = DirType.West;
-						break;
-				}
-				
-				if (flip ==0){
-					cmds.add(new CommandCoin(r));
-				}
-				else {
-					cmds.add(new CommandMove(r, dir));
-				}
-			}
-		return cmds;
+	    switch(num){
+	    case 0: dir = DirType.North;
+		break;
+	    case 1: dir = DirType.South;
+		break;
+	    case 2: dir = DirType.East;
+		break;
+	    case 3: dir = DirType.West;
+		break;
+	    }
+	    
+	    if (flip ==0){
+		//cmds.add(new CommandCoin(r));
+		cmds.add(new CommandMove(r, dir));
+	    }
+	    else {
+		cmds.add(new CommandMove(r, dir));
+	    }
 	}
+
+	return cmds;
+
+    }
+
 }
