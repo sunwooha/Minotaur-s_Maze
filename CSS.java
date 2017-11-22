@@ -38,7 +38,6 @@ public class CSS implements PlayerTeam{
         return theCSSTeam;
     }
     
-    /*
     // Asks a CSSRobot for its desired command
     public Command getCommand(Robot r, List<Location> info, GameState state) {
 		Command com;
@@ -61,7 +60,6 @@ public class CSS implements PlayerTeam{
 		
 		return com;
 	}
-	* */
 
     /** 
      * requestCommands is called each turn
@@ -71,7 +69,7 @@ public class CSS implements PlayerTeam{
     public List<Command> requestCommands(List<Location> information, List<Robot> robotsAwaitingCommand, GameState state){
 		List<Command> ourCommands = new ArrayList<Command>();
 		
-		for(Robot r: robotsAwaitingCommand){
+		/*for(Robot r: robotsAwaitingCommand){
 			int num = rand.nextInt(4);
 			int flip = rand.nextInt(2);
 			DirType dir = null;
@@ -94,13 +92,12 @@ public class CSS implements PlayerTeam{
 				ourCommands.add(new CommandMove(r, dir));
 			}
 		}
+		* */
 		
-		/*
 		for(Robot bot : robotsAwaitingCommand) {
-			Command com = this.getCommand(bot, information, state);
+			Command com = getCommand(bot, information, state);
 			ourCommands.add(com);
 		}
-		*/
 		
 		return ourCommands;
     }

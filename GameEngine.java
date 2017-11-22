@@ -17,7 +17,7 @@ class GameEngine{
 	engine.execution = new StandardExecution();
 
 	engine.team1 = new CSS();
-	engine.team2 = new CSS();
+	engine.team2 = new TestTeam();
 
 	engine.startGame();
 	engine.runGame();
@@ -38,8 +38,8 @@ class GameEngine{
 	List<? extends Robot> robots2 = team2.chooseTeam(false, state);
 
 	addRobots(true, robots1);
-	//addRobots(false, robots2);
-	//addMinotaur();
+	addRobots(false, robots2);
+	addMinotaur();
 
     }
 

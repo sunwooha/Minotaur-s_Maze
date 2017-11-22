@@ -11,7 +11,7 @@ public abstract class CSSRobot implements Robot {
 	Location current_location;
 	
 	// List of what types of coins this robot is able to pick up
-	List<CoinType> coinTypes;
+	List<CoinType> coinTypes = new ArrayList<CoinType>();
 	
 	public ModelType getModel() {
 		return model;
@@ -22,19 +22,10 @@ public abstract class CSSRobot implements Robot {
 		return id;
 	}
 	
-	// Randomly determine the robot's ID
-	public void newID() {
-		int max = 999;
-        int min = 100;
-        int idnum = rand.nextInt((max - min) + 1) + min;
-        id = idnum;
-	}
-	
 	public boolean isTeamOne() {
 		return is_teamOne;
 	}
 	
-	/*
 	// Choose a command for the robot
 	public Command choose_command(List<Location> info, GameState state) {
 		if (this.canPickup() == true) {
@@ -62,5 +53,4 @@ public abstract class CSSRobot implements Robot {
 	
 	// Different robot types should choose their moves in different ways based on different criteria, hence why this method is abstract
 	public abstract DirType move(List<Location> info, GameState state);
-    */
 }
