@@ -16,7 +16,7 @@ class GameEngine{
 	GameEngine engine = new GameEngine();
 	engine.execution = new StandardExecution();
 
-	engine.team1 = new CSS();
+	engine.team1 = new TestTeam();
 	engine.team2 = new TestTeam();
 
 	engine.startGame();
@@ -49,7 +49,7 @@ class GameEngine{
 	int max_y = scan_maze.getMaxY();
 
 	for (int i=0; i<max_x; i++){
-	    for(int j=0; j<max_x; j++){
+	    for(int j=0; j<max_y; j++){
 		Location cur_loc = scan_maze.getLocation(i,j);
 		if (cur_loc != null){
 		    loc_list.add(cur_loc);
