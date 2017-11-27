@@ -18,7 +18,7 @@ public class CoreBot extends CSSRobot{
 	// Determine how CoreBots move
 	public DirType move(List<Location> info, GameState state){
 		
-		// Random movement as a placeholder until we figure out something better
+	// Random movement as a placeholder until we figure out something better
 		
 		int max = 4;
 		int min = 1;
