@@ -1,9 +1,13 @@
-public class WolfBot extends CSSRobot{
+import java.util.*;
+
+public class WolfBot{
     
-    // Constructor
-	public WolfBot(int the_id, boolean teamOne){
-		model = ModelType.WolfBot;
-		id = the_id;
-		is_teamOne = teamOne;
-    }
+public WolfBot(int the_id, boolean teamOne){
+	model = ModelType.WolfBot;
+	id = the_id;
+	is_teamOne = teamOne;
+			
+	coinTypes.add(CoinType.Bronze);
+	coinTypes.add(CoinType.Silver);
+	}
 }
