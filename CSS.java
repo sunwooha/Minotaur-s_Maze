@@ -24,9 +24,9 @@ public class CSS implements PlayerTeam{
         this.theState = state;
         List<Robot> theCSSTeam = new ArrayList<Robot>();
         bot1 = new CoreBot(7, teamOne);
-        bot2 = new CoreBot(8, teamOne);
-        bot3 = new CoreBot(9, teamOne);
-        bot4 = new CoreBot(10, teamOne);
+        bot2 = new WolfBot(8, teamOne);
+        bot3 = new SkunkBot(9, teamOne);
+        bot4 = new FalconBot(10, teamOne);
         teamComp.add(bot1);
         teamComp.add(bot2);
         teamComp.add(bot3);
@@ -37,43 +37,6 @@ public class CSS implements PlayerTeam{
         theCSSTeam.add(bot4);
         return theCSSTeam;
     }
-    
-    // Asks a CSSRobot for its desired command
-    public Command getCommand(Robot r, List<Location> info, GameState state) {
-		Command com;
-		System.out.println("test");
-		
-		if (r.getModel() == ModelType.CoreBot) {
-			System.out.println("test3");
-		}
-		
-		if (r instanceof CSSRobot) {
-			System.out.println("hi");
-		}
-		
-		if (r instanceof CoreBot) {
-			System.out.println("hello");
-		}
-		
-		if (r == bot1) {
-			com = bot1.choose_command(info, state);
-			System.out.println("test2");
-		}
-		else if (r == bot2) {
-			com = bot2.choose_command(info, state);
-		}
-		else if (r == bot3) {
-			com = bot3.choose_command(info, state);
-		}
-		else if (r == bot4) {
-			com = bot4.choose_command(info, state);
-		}
-		else {
-			com = null;
-		}
-		
-		return com;
-	}
 
     /** 
      * requestCommands is called each turn
@@ -83,7 +46,7 @@ public class CSS implements PlayerTeam{
     public List<Command> requestCommands(List<Location> information, List<Robot> robotsAwaitingCommand, GameState state){
 		List<Command> ourCommands = new ArrayList<Command>();
 		
-		/*for(Robot r: robotsAwaitingCommand){
+		for(Robot r: robotsAwaitingCommand){
 			int num = rand.nextInt(4);
 			int flip = rand.nextInt(2);
 			DirType dir = null;
@@ -100,19 +63,50 @@ public class CSS implements PlayerTeam{
 			}
 	    
 			if (flip ==0){
-				ourCommands.add(new CommandMove(r, dir));
+				ourCommands.add(new CommandCoin(r));
 			}
 			else {
 				ourCommands.add(new CommandMove(r, dir));
 			}
 		}
-		* */
-		
-		for(Robot bot : robotsAwaitingCommand) {
-			Command com = getCommand(bot, information, state);
-			ourCommands.add(com);
-		}
 		
 		return ourCommands;
     }
+    
+    // Lists what coin types each robot can pick up
+    public List<CoinType> getCoinTypes(Robot r) {
+		
+		List<CoinType> coinTypes = new ArrayList<CoinType>();
+		
+		if (r.getModel() == ModelType.WolfBot || r.getModel() == ModelType.SkunkBot) {
+			coinTypes.add(CoinType.Bronze);
+			coinTypes.add(CoinType.Silver);
+		}
+		else if (r.getModel() == ModelType.FalconBot) {
+			coinTypes.add(CoinType.Bronze);
+			coinTypes.add(CoinType.Silver);
+			coinTypes.add(CoinType.Gold);
+		}
+		else if (r.getModel() == ModelType.CoreBot) {
+			coinTypes.add(CoinType.Bronze);
+			coinTypes.add(CoinType.Silver);
+			coinTypes.add(CoinType.Gold);
+			coinTypes.add(CoinType.Diamond);
+		}
+		
+		return coinTypes;
+	}
+	
+	// Determine whether or not a robot can pick up a coin on its current turn
+	public boolean canPickup(Robot r) {
+		boolean coinPickup;
+		if (Collections.disjoint(current_location.getCoins(), getCoinTypes(r)) == false) {
+			coinPickup = true;
+		}
+		else {
+			coinPickup = false;
+		}
+		return coinPickup;
+	}
+
 }
