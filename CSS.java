@@ -3,17 +3,7 @@ import java.util.*;
 public class CSS implements PlayerTeam{
     boolean teamOne;
     GameState theState;
-    
-    // List of robots on the team (getCommand() only works if this is defined as a list of CSSRobots, not just Robots)
-    List<CSSRobot> teamComp = new ArrayList<CSSRobot>();
-    CSSRobot bot1;
-    CSSRobot bot2;
-    CSSRobot bot3;
-    CSSRobot bot4;
-
-    public CSS(){
-    
-    }
+    Random rand;
 
     /**
      * chooseTeam is called once at the very start of the game
@@ -22,46 +12,20 @@ public class CSS implements PlayerTeam{
     // Creates two lists with the same contents: a list of CSSRobots (teamComp) and a list of Robots (theCSSTeam)
     // This is necessary for getCommand() to work
     public List<Robot> chooseTeam(boolean teamOne, GameState state){
+		rand = new Random();
         this.teamOne = teamOne;
         this.theState = state;
         List<Robot> theCSSTeam = new ArrayList<Robot>();
-        bot1 = new CoreBot(teamOne);
-        bot2 = new CoreBot(teamOne);
-        bot3 = new CoreBot(teamOne);
-        bot4 = new CoreBot(teamOne);
-        teamComp.add(bot1);
-        teamComp.add(bot2);
-        teamComp.add(bot3);
-        teamComp.add(bot4);
+        CSSRobot bot1 = new CoreBot(7, teamOne);
+        CSSRobot bot2 = new WolfBot(8, teamOne);
+        CSSRobot bot3 = new SkunkBot(9, teamOne);
+        CSSRobot bot4 = new FalconBot(10, teamOne);
         theCSSTeam.add(bot1);
         theCSSTeam.add(bot2);
         theCSSTeam.add(bot3);
         theCSSTeam.add(bot4);
         return theCSSTeam;
     }
-    
-    // Asks a CSSRobot for its desired command
-    public Command getCommand(Robot r, List<Location> info, GameState state) {
-		Command com;
-		
-		if (r == bot1) {
-			com = bot1.choose_command(info, state);
-		}
-		else if (r == bot2) {
-			com = bot2.choose_command(info, state);
-		}
-		else if (r == bot3) {
-			com = bot3.choose_command(info, state);
-		}
-		else if (r == bot4) {
-			com = bot4.choose_command(info, state);
-		}
-		else {
-			com = null;
-		}
-		
-		return com;
-	}
 
     /** 
      * requestCommands is called each turn
@@ -71,11 +35,64 @@ public class CSS implements PlayerTeam{
     public List<Command> requestCommands(List<Location> information, List<Robot> robotsAwaitingCommand, GameState state){
 		List<Command> ourCommands = new ArrayList<Command>();
 		
-		for(Robot bot : robotsAwaitingCommand) {
-			Command com = this.getCommand(bot, information, state);
-			ourCommands.add(com);
+		for(Robot r: robotsAwaitingCommand){
+			if (canPickup(r) == true){
+				ourCommands.add(new CommandCoin(r));
+			}
+			else {
+				int num = rand.nextInt(4);
+				DirType dir = null;
+
+				switch(num){
+					case 0: dir = DirType.North;
+					break;
+					case 1: dir = DirType.South;
+					break;
+					case 2: dir = DirType.East;
+					break;
+					case 3: dir = DirType.West;
+					break;
+				}
+				ourCommands.add(new CommandMove(r, dir));
+			}
 		}
-		
 		return ourCommands;
     }
+    
+    // Lists what coin types each robot can pick up
+    public List<CoinType> getCoinTypes(Robot r) {
+		
+		List<CoinType> coinTypes = new ArrayList<CoinType>();
+		
+		if (r.getModel() == ModelType.WolfBot || r.getModel() == ModelType.SkunkBot) {
+			coinTypes.add(CoinType.Bronze);
+			coinTypes.add(CoinType.Silver);
+		}
+		else if (r.getModel() == ModelType.FalconBot) {
+			coinTypes.add(CoinType.Bronze);
+			coinTypes.add(CoinType.Silver);
+			coinTypes.add(CoinType.Gold);
+		}
+		else if (r.getModel() == ModelType.CoreBot) {
+			coinTypes.add(CoinType.Bronze);
+			coinTypes.add(CoinType.Silver);
+			coinTypes.add(CoinType.Gold);
+			coinTypes.add(CoinType.Diamond);
+		}
+		
+		return coinTypes;
+	}
+	
+	// Determine whether or not a robot can pick up a coin on its current turn
+	public boolean canPickup(Robot r) {
+		boolean coinPickup = false;
+		/*if (Collections.disjoint(current_location.getCoins(), getCoinTypes(r)) == false) {
+			coinPickup = true;
+		}
+		else {
+			coinPickup = false;
+		}*/
+		return coinPickup;
+	}
+
 }
