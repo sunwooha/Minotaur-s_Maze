@@ -7,12 +7,6 @@ public class CoreBot extends CSSRobot{
 		model = ModelType.CoreBot;
 		id = the_id;
 		is_teamOne = teamOne;
-		
-		// CoreBots can pick up all coin types
-		coinTypes.add(CoinType.Bronze);
-		coinTypes.add(CoinType.Silver);
-		coinTypes.add(CoinType.Gold);
-		coinTypes.add(CoinType.Diamond);
     }
 	
 	// Determine how CoreBots move

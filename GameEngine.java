@@ -16,8 +16,13 @@ public class GameEngine{
 		GameEngine engine = new GameEngine();
 		engine.execution = new StandardExecution();
 
+<<<<<<< HEAD
 		engine.team1 = new TestTeam();
 		engine.team2 = new TestTeam();
+=======
+	engine.team1 = new CSS();
+	engine.team2 = new TestTeam();
+>>>>>>> 2496c59c7aed466834d741f8f19a3fd64cded651
 
 		engine.startGame();
 		engine.runGame();
