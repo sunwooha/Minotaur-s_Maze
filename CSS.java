@@ -4,13 +4,6 @@ public class CSS implements PlayerTeam{
     boolean teamOne;
     GameState theState;
     Random rand;
-    
-    // List of robots on the team (getCommand() only works if this is defined as a list of CSSRobots, not just Robots)
-    List<CSSRobot> teamComp = new ArrayList<CSSRobot>();
-    CSSRobot bot1;
-    CSSRobot bot2;
-    CSSRobot bot3;
-    CSSRobot bot4;
 
     /**
      * chooseTeam is called once at the very start of the game
@@ -23,14 +16,10 @@ public class CSS implements PlayerTeam{
         this.teamOne = teamOne;
         this.theState = state;
         List<Robot> theCSSTeam = new ArrayList<Robot>();
-        bot1 = new CoreBot(7, teamOne);
-        bot2 = new WolfBot(8, teamOne);
-        bot3 = new SkunkBot(9, teamOne);
-        bot4 = new FalconBot(10, teamOne);
-        teamComp.add(bot1);
-        teamComp.add(bot2);
-        teamComp.add(bot3);
-        teamComp.add(bot4);
+        CSSRobot bot1 = new CoreBot(7, teamOne);
+        CSSRobot bot2 = new WolfBot(8, teamOne);
+        CSSRobot bot3 = new SkunkBot(9, teamOne);
+        CSSRobot bot4 = new FalconBot(10, teamOne);
         theCSSTeam.add(bot1);
         theCSSTeam.add(bot2);
         theCSSTeam.add(bot3);
