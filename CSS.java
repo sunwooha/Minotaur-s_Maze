@@ -85,7 +85,6 @@ public class CSS implements PlayerTeam{
 		
 		/*for(Robot r: robotsAwaitingCommand){
 			int num = rand.nextInt(4);
-			int flip = rand.nextInt(2);
 			DirType dir = null;
 
 			switch(num){
@@ -99,8 +98,13 @@ public class CSS implements PlayerTeam{
 				break;
 			}
 	    
+<<<<<<< HEAD
 			if (flip ==0){
 				ourCommands.add(new CommandMove(r, dir));
+=======
+			if (canPickup(r) == true){
+				ourCommands.add(new CommandCoin(r));
+>>>>>>> 179a106899410d89606cd31bea7a0e8cdda16732
 			}
 			else {
 				ourCommands.add(new CommandMove(r, dir));
