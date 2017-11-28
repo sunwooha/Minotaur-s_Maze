@@ -13,13 +13,13 @@ public class TestTeam implements PlayerTeam{
     Random rand;
 
     public List<Robot> chooseTeam(boolean teamOne, GameState state){
-		rand = new Random();
-		bots = new ArrayList<Robot>();
-		bots.add(new TestRobot(ModelType.HippoBot, 11, teamOne));
-		bots.add(new TestRobot(ModelType.CoreBot, 12, teamOne));
-		bots.add(new TestRobot(ModelType.RabbitBot, 13, teamOne));
-		bots.add(new TestRobot(ModelType.FalconBot, 14, teamOne));
-		return bots;
+	rand = new Random();
+	bots = new ArrayList<Robot>();
+	bots.add(new TestRobot(ModelType.HippoBot, 11, teamOne));
+	bots.add(new TestRobot(ModelType.CoreBot, 12, teamOne));
+	bots.add(new TestRobot(ModelType.RabbitBot, 13, teamOne));
+	bots.add(new TestRobot(ModelType.FalconBot, 14, teamOne));
+	return bots;
     }
 
 
@@ -44,10 +44,10 @@ public class TestTeam implements PlayerTeam{
 	    
 	    if (flip ==0){
 		//cmds.add(new CommandCoin(r));
-			cmds.add(new CommandMove(r, dir));
+		cmds.add(new CommandMove(r, dir));
 	    }
 	    else {
-			cmds.add(new CommandMove(r, dir));
+		cmds.add(new CommandMove(r, dir));
 	    }
 	}
 

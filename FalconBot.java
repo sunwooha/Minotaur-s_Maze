@@ -1,14 +1,9 @@
-import java.util.*;
-
-public class FalconBot{
+public class FalconBot extends CSSRobot{
     
+    // Constructor
     public FalconBot(int the_id, boolean teamOne){
-		model = ModelType.WolfBot;
+		model = ModelType.FalconBot;
 		id = the_id;
 		is_teamOne = teamOne;
-		
-		coinTypes.add(CoinType.Bronze);
-        coinTypes.add(CoinType.Silver);
-        coinTypes.add(CoinType.Gold);
     }
 }
