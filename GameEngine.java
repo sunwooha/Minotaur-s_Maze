@@ -79,8 +79,10 @@ class GameEngine{
 	    else{
 		MazeDisplay.display(doTeamScan(true));
 	    }
-	    System.out.print("Coins Collected: ");
-	    System.out.println(state.team_one_coins);
+	    System.out.print("Coins Collected by Team 1: ");
+		System.out.println(state.team_one_coins);
+		System.out.print("Coins Collected by Team 2: ");
+		System.out.println(state.team_two_coins);
 	    System.out.print("Turns Remaining: ");
 	    System.out.println(state.turns_remaining);
 	    // *******************
