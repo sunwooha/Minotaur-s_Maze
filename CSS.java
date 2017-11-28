@@ -48,7 +48,6 @@ public class CSS implements PlayerTeam{
 		
 		for(Robot r: robotsAwaitingCommand){
 			int num = rand.nextInt(4);
-			int flip = rand.nextInt(2);
 			DirType dir = null;
 
 			switch(num){
@@ -62,7 +61,7 @@ public class CSS implements PlayerTeam{
 				break;
 			}
 	    
-			if (flip ==0){
+			if (canPickup(r) == true){
 				ourCommands.add(new CommandCoin(r));
 			}
 			else {

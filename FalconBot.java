@@ -6,5 +6,4 @@ public class FalconBot extends CSSRobot{
 		id = the_id;
 		is_teamOne = teamOne;
     }
-    
 }
