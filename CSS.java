@@ -47,28 +47,26 @@ public class CSS implements PlayerTeam{
 		List<Command> ourCommands = new ArrayList<Command>();
 		
 		for(Robot r: robotsAwaitingCommand){
-			int num = rand.nextInt(4);
-			DirType dir = null;
-
-			switch(num){
-				case 0: dir = DirType.North;
-				break;
-				case 1: dir = DirType.South;
-				break;
-				case 2: dir = DirType.East;
-				break;
-				case 3: dir = DirType.West;
-				break;
-			}
-	    
 			if (canPickup(r) == true){
 				ourCommands.add(new CommandCoin(r));
 			}
 			else {
+				int num = rand.nextInt(4);
+				DirType dir = null;
+
+				switch(num){
+					case 0: dir = DirType.North;
+					break;
+					case 1: dir = DirType.South;
+					break;
+					case 2: dir = DirType.East;
+					break;
+					case 3: dir = DirType.West;
+					break;
+				}
 				ourCommands.add(new CommandMove(r, dir));
 			}
 		}
-		
 		return ourCommands;
     }
     
