@@ -8,7 +8,6 @@ public class CoreBot extends CSSRobot{
 		id = the_id;
 		is_teamOne = teamOne;
     }
-<<<<<<< HEAD
 	
 	// Determine how CoreBots move
 	public DirType move(List<Location> info, GameState state){
@@ -35,6 +34,4 @@ public class CoreBot extends CSSRobot{
 			return DirType.North;
 		}
     }
-=======
->>>>>>> 179a106899410d89606cd31bea7a0e8cdda16732
 }
