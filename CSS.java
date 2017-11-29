@@ -39,18 +39,6 @@ public class CSS implements PlayerTeam{
 			}
 			else {
 				List<Location> adjacentLocations = directionsToLocations(current_location,information);
-				/*int num = rand.nextInt(4);
-				DirType dir = null;
-				switch(num){
-					case 0: dir = DirType.North;
-					break;
-					case 1: dir = DirType.South;
-					break;
-					case 2: dir = DirType.East;
-					break;
-					case 3: dir = DirType.West;
-					break;
-				}*/
 				ourCommands.add(new CommandMove(r, dir));
 			}
 		}
