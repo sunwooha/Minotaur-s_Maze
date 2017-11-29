@@ -39,7 +39,11 @@ public class CSS implements PlayerTeam{
 			}
 			else {
 				List<Location> adjacentLocations = directionsToLocations(current_location,information);
-				ourCommands.add(new CommandMove(r, dir));
+				List<Location> finalLocations = nextMove(r, adjacentLocations);
+				int nextInt = rand.nextInt(finalLocations.size());
+				Location nextLocation = finalLocations.get(nextInt);
+				DirType finalDirection = locationToDirection(nextLocation, current_location);
+				ourCommands.add(new CommandMove(r, finalDirection));
 			}
 		}
 		return ourCommands;
@@ -67,6 +71,25 @@ public class CSS implements PlayerTeam{
 		}
 		
 		return coinTypes;
+	}
+
+	public List<Location> nextMove(Robot r, List<Location> possibleLoc){
+		List<Location> finalLocations = new ArrayList<Location>();
+		for(Location loc: possibleLoc){
+			if(loc.getRobots() == null || loc.getRobots().isEmpty()){
+				finalLocations.add(loc);
+			}
+			else if(getEnemyRobots(loc, r)){
+				continue;
+			}
+			else{
+				finalLocations.add(loc);
+			}
+			if(canPickup(r, loc) && !(getEnemyRobots(loc, r))){
+				finalLocations.add(loc);
+			}
+		}
+		return finalLocations;
 	}
 	
 	// Determine whether or not a robot can pick up a coin on its current turn
@@ -108,10 +131,32 @@ public class CSS implements PlayerTeam{
 		return currentLoc;
 	}
 
+	public DirType locationToDirection(Location loc, Location currentLocation){
+		DirType finalDir = null;
+		int x = loc.getX();
+		int y = loc.getY();
+		int currX = currentLocation.getX();
+		int currY = currentLocation.getY();
+
+		if(currX == x && (y - 1) == currY){
+			finalDir = DirType.North;
+		}
+		else if(currX == x && (y + 1) == currY){
+			finalDir = DirType.South;
+		}
+		else if(currY == y && (x - 1) == currX){
+			finalDir = DirType.West;
+		}
+		else if(currY == y && (x + 1) == currX){
+			finalDir = DirType.East;
+		}
+		return finalDir;
+	}
+
 	public List<Location> directionsToLocations(Location loc, List<Location> information) {
 		int oldX = loc.getX();
 		int oldY = loc.getY();
-		List<Location> possibleDir = loc.getDirections();
+		List<DirType> possibleDir = loc.getDirections();
 		List<Location> adjacentLocations = new ArrayList<Location>();
 		for (DirType D : possibleDir) {
 			int newX = loc.getX();
@@ -135,8 +180,8 @@ public class CSS implements PlayerTeam{
 					adjacentLocations.add(L);
 				}
 			}
-		return adjacentLocations;
 		}
+		return adjacentLocations;
 	}
 
 	public boolean getEnemyRobots(Location loc, Robot r) {
@@ -144,19 +189,25 @@ public class CSS implements PlayerTeam{
 		List<ModelType> enemyRobots = new ArrayList<ModelType>();
 		
 		if (r.getModel() == ModelType.WolfBot) {
-			enemyRobots.add(ModelType.Minotaur);
+			enemyRobots.add(ModelType.MinotaurBot);
 		}
-		else if (r.getModel() == ModelType.FalconBot || r.getModel() == ModelType.SkunkBot) {
+		else if (r.getModel() == ModelType.FalconBot) {
 			enemyRobots.add(ModelType.CoreBot);
 			enemyRobots.add(ModelType.WolfBot);
-			enemyRobots.add(ModelType.Minotaur);
+			enemyRobots.add(ModelType.MinotaurBot);
 		}
 		else if (r.getModel() == ModelType.CoreBot) {
 			enemyRobots.add(ModelType.WolfBot);
-			enemyRobots.add(ModelType.Minataur);
+			enemyRobots.add(ModelType.MinotaurBot);
 		}
-		
-		if (Collections.disjoint(loc.getRobots(), enemyRobots) == false) {
+		else if (r.getModel() == ModelType.SkunkBot) {
+			enemyRobots.add(ModelType.CoreBot);
+			enemyRobots.add(ModelType.WolfBot);
+		}
+		if(loc.getRobots() == null){
+			return false;
+		}
+		else if (Collections.disjoint(loc.getRobots(), enemyRobots) == false) {
 			return true;
 		}
 		else {
