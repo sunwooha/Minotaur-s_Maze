@@ -102,7 +102,7 @@ public class CSS implements PlayerTeam{
 		Location currentLoc = null;
 		for(Location loc: information){
 			List<? extends Robot> the_bots = loc.getRobots();
-			if(the_bots == null){
+			if(the_bots == null || the_bots.isEmpty()){
 				continue;
 			}
 			else{

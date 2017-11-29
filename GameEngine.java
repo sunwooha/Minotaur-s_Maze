@@ -99,6 +99,10 @@ class GameEngine{
 	    addFreeCommands(team2_cmds, getTeamRobots(false));
 
 	    execution.executeCommands(the_maze, team1_cmds, team2_cmds, state);
+	    
+	    // edit by Sophie
+	    scan1_locations = mazeToLocations(doTeamScan(true));
+	    scan2_locations = mazeToLocations(doTeamScan(false));
 
 
             // EXTRA PART OF THE TURN FOR FAST ROBOTS	    
