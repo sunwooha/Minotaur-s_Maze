@@ -38,12 +38,15 @@ public class CSS implements PlayerTeam{
 				ourCommands.add(new CommandCoin(r));
 			}
 			else {
-				List<Location> adjacentLocations = directionsToLocations(current_location,information);
+				List<DirType> possibleDirections = current_location.getDirections();
+				int num = rand.nextInt(possibleDirections.size());
+				DirType dir = possibleDirections.get(num);
+				/*List<Location> adjacentLocations = directionsToLocations(current_location,information);
 				List<Location> finalLocations = nextMove(r, adjacentLocations);
 				int nextInt = rand.nextInt(finalLocations.size());
 				Location nextLocation = finalLocations.get(nextInt);
-				DirType finalDirection = locationToDirection(nextLocation, current_location);
-				ourCommands.add(new CommandMove(r, finalDirection));
+				DirType dir = locationToDirection(nextLocation, current_location);*/
+				ourCommands.add(new CommandMove(r, dir));
 			}
 		}
 		return ourCommands;
@@ -145,10 +148,10 @@ public class CSS implements PlayerTeam{
 			finalDir = DirType.South;
 		}
 		else if(currY == y && (x - 1) == currX){
-			finalDir = DirType.West;
+			finalDir = DirType.East;
 		}
 		else if(currY == y && (x + 1) == currX){
-			finalDir = DirType.East;
+			finalDir = DirType.West;
 		}
 		return finalDir;
 	}
@@ -185,7 +188,8 @@ public class CSS implements PlayerTeam{
 	}
 
 	public boolean getEnemyRobots(Location loc, Robot r) {
-		
+		List<? extends Robot> allRobotsHere = loc.getRobots();
+		List<Robot> onlyEnemiesHere = new ArrayList<Robot>();
 		List<ModelType> enemyRobots = new ArrayList<ModelType>();
 		
 		if (r.getModel() == ModelType.WolfBot) {
@@ -204,10 +208,24 @@ public class CSS implements PlayerTeam{
 			enemyRobots.add(ModelType.CoreBot);
 			enemyRobots.add(ModelType.WolfBot);
 		}
-		if(loc.getRobots() == null){
+
+		if(allRobotsHere == null){
 			return false;
 		}
-		else if (Collections.disjoint(loc.getRobots(), enemyRobots) == false) {
+
+		for(Robot rob : allRobotsHere){
+			if(rob.isTeamOne() != r.isTeamOne()){
+				onlyEnemiesHere.add(rob);
+			}
+			else{
+				continue;
+			}
+		}
+
+		if(loc.getRobots() == null || onlyEnemiesHere == null){
+			return false;
+		}
+		else if (Collections.disjoint(onlyEnemiesHere, enemyRobots) == false) {
 			return true;
 		}
 		else {
