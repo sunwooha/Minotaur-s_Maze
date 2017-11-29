@@ -9,8 +9,6 @@ public class CSS implements PlayerTeam{
      * chooseTeam is called once at the very start of the game
      * This function should return the robots the player wants to use during the game
      * */
-    // Creates two lists with the same contents: a list of CSSRobots (teamComp) and a list of Robots (theCSSTeam)
-    // This is necessary for getCommand() to work
     public List<Robot> chooseTeam(boolean teamOne, GameState state){
 		rand = new Random();
         this.teamOne = teamOne;
@@ -85,8 +83,8 @@ public class CSS implements PlayerTeam{
 	// Determine whether or not a robot can pick up a coin on its current turn
 	public boolean canPickup(Robot r, Location currentLoc) {
 		boolean coinPickup = false;
-		if(currentLoc.getCoins() ==  null){
-			return false;
+		if(currentLoc.getCoins() == null || currentLoc.getCoins().isEmpty()){
+			coinPickup = false;
 		}
 		else{
 			if (Collections.disjoint(currentLoc.getCoins(), getCoinTypes(r)) == false) {
@@ -98,7 +96,8 @@ public class CSS implements PlayerTeam{
 		}
 		return coinPickup;
 	}
-
+	
+	// Determines a robot's current location in the maze
 	public Location currentLocation(Robot r, List<Location> information){
 		Location currentLoc = null;
 		for(Location loc: information){
@@ -113,6 +112,9 @@ public class CSS implements PlayerTeam{
 					}
 				}
 			}
+		}
+		if (currentLoc == null) {
+			System.out.println("test");
 		}
 		return currentLoc;
 	}
