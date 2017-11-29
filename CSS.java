@@ -80,7 +80,7 @@ public class CSS implements PlayerTeam{
 		return coinTypes;
 	}
 	
-	// Determine whether or not a robot can pick up a coin on its current turnn
+	// Determine whether or not a robot can pick up a coin on its current turn
 	public boolean canPickup(Robot r, Location currentLoc) {
 		boolean coinPickup = false;
 		if(currentLoc.getCoins() == null || currentLoc.getCoins().isEmpty()){
