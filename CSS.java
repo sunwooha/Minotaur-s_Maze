@@ -138,4 +138,29 @@ public class CSS implements PlayerTeam{
 		return adjacentLocations;
 		}
 	}
+
+	public boolean getEnemyRobots(Location loc, Robot r) {
+		
+		List<ModelType> enemyRobots = new ArrayList<ModelType>();
+		
+		if (r.getModel() == ModelType.WolfBot) {
+			enemyRobots.add(ModelType.Minotaur);
+		}
+		else if (r.getModel() == ModelType.FalconBot || r.getModel() == ModelType.SkunkBot) {
+			enemyRobots.add(ModelType.CoreBot);
+			enemyRobots.add(ModelType.WolfBot);
+			enemyRobots.add(ModelType.Minotaur);
+		}
+		else if (r.getModel() == ModelType.CoreBot) {
+			enemyRobots.add(ModelType.WolfBot);
+			enemyRobots.add(ModelType.Minataur);
+		}
+		
+		if (Collections.disjoint(loc.getRobots(), enemyRobots) == false) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
