@@ -38,9 +38,7 @@ public class CSS implements PlayerTeam{
 				ourCommands.add(new CommandCoin(r));
 			}
 			else {
-				List<DirType> possibleDirections = current_location.getDirections();
-				int num = rand.nextInt(possibleDirections.size());
-				DirType dir = possibleDirections.get(num);
+				List<Location> adjacentLocations = directionsToLocations(current_location,information);
 				/*int num = rand.nextInt(4);
 				DirType dir = null;
 				switch(num){
@@ -122,13 +120,34 @@ public class CSS implements PlayerTeam{
 		return currentLoc;
 	}
 
-	public List<Location> vision(Robot r, List<Location> information){
-		List<Location> the_vision = new ArrayList<Location>();
-		for(Location loc: information){
-			if(loc.isScanned() == true){
-				the_vision.add(loc);
+	public List<Location> directionsToLocations(Location loc, List<Location> information) {
+		int oldX = loc.getX();
+		int oldY = loc.getY();
+		List<Location> possibleDir = loc.getDirections();
+		List<Location> adjacentLocations = new ArrayList<Location>();
+		for (DirType D : possibleDir) {
+			int newX = loc.getX();
+			int newY = loc.getY();
+			switch (D) {
+				case North:
+					newY = oldY - 1;
+					break;
+				case South:
+					newY = oldY + 1;
+					break;
+				case West:
+					newX = oldX - 1;
+					break;
+				case East:
+					newX = oldX + 1;
+					break;
 			}
+			for (Location L : information) {
+				if (L.getY() == newY && L.getX() == newX) {
+					adjacentLocations.add(L);
+				}
+			}
+		return adjacentLocations;
 		}
-		return the_vision;
 	}
 }

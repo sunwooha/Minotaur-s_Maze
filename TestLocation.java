@@ -27,34 +27,34 @@ public class TestLocation implements Location{
     boolean t2st;
 
     public List<CoinType> getCoins(){
-	return coins;
+	    return coins;
     }
 
     public List<TestRobot> getRobots(){
-	return bots;
+	    return bots;
     }
 
     public List<DirType> getDirections(){
-	return dirs;
+	    return dirs;
     }
 
     public int getX(){
-	return x;
+	    return x;
     }
 
     public int getY(){
-	return y;
+	    return y;
     }
 
     public boolean isScanned(){
-	return is;
+	    return is;
     }
 
     public boolean isTeamOneStart(){
-	return t1st;
+	    return t1st;
     }
 
     public boolean isTeamTwoStart(){
-	return t2st;
+	    return t2st;
     }
 }
