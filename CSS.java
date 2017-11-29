@@ -38,7 +38,10 @@ public class CSS implements PlayerTeam{
 				ourCommands.add(new CommandCoin(r));
 			}
 			else {
-				int num = rand.nextInt(4);
+				List<DirType> possibleDirections = current_location.getDirections();
+				int num = rand.nextInt(possibleDirections.size());
+				DirType dir = possibleDirections.get(num);
+				/*int num = rand.nextInt(4);
 				DirType dir = null;
 				switch(num){
 					case 0: dir = DirType.North;
@@ -49,7 +52,7 @@ public class CSS implements PlayerTeam{
 					break;
 					case 3: dir = DirType.West;
 					break;
-				}
+				}*/
 				ourCommands.add(new CommandMove(r, dir));
 			}
 		}
