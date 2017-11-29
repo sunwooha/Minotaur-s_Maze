@@ -116,4 +116,14 @@ public class CSS implements PlayerTeam{
 		}
 		return currentLoc;
 	}
+	/**
+	 * Need a way to look 2 spaces N,S,W,E from current position
+	 */
+	public List<Location> vision(Robot r, Location currentLoc){
+		List<Location> the_vision = new ArrayList<Location>();
+		int x = currentLoc.getX();
+		int y = currentLoc.getY();
+
+		return the_vision;
+	}
 }
