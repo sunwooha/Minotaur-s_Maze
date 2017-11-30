@@ -20,15 +20,15 @@ public class GameState implements Cloneable{
     public int total_coins;
 
     public GameState(int x, int y, int turn, int team1, int team2, int tot){
-        maze_size_x = x;
-        maze_size_y = y;
-        turns_remaining = turn;
-        team_one_coins = team1;
-        team_two_coins = team2;
-        total_coins = tot;
+	maze_size_x = x;
+	maze_size_y = y;
+	turns_remaining = turn;
+	team_one_coins = team1;
+	team_two_coins = team2;
+	total_coins = tot;
     }
 
     public GameState clone(){
-	    return new GameState(maze_size_x, maze_size_y, turns_remaining, team_one_coins, team_two_coins, total_coins);
+	return new GameState(maze_size_x, maze_size_y, turns_remaining, team_one_coins, team_two_coins, total_coins);
     }
 }

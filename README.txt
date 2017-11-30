@@ -4,7 +4,17 @@ You should change the main method code in GameEngine.java to use your class inst
 
 For testing purposes you can change the constant FULL_VISION in the Game Engine class to toggle between printing the entire maze and only printing to the screen locations that your robots can scan. (This does not change anyting except the printed output.)
 
-The current version of the game only supports CoreBot. 
+You can change the Maze that is used in GameEngine:
+-- ExampleMaze() is the previous small Maze
+-- DiskMaze("largetest.maze") is a larger 12x11 test Maze
+
+Note that in the text-based interface
+Robots are represented by the Letter that starts the name of the Robot.
+Coins are represented as follows:
+  * Bronze
+  @ Silver
+  # Gold
+  $ Diamond
 
 
 ============================
