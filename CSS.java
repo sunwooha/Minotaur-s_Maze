@@ -38,14 +38,14 @@ public class CSS implements PlayerTeam{
 				ourCommands.add(new CommandCoin(r));
 			}
 			else {
-				List<DirType> possibleDirections = current_location.getDirections();
+				/*List<DirType> possibleDirections = current_location.getDirections();
 				int num = rand.nextInt(possibleDirections.size());
-				DirType dir = possibleDirections.get(num);
-				/*List<Location> adjacentLocations = directionsToLocations(current_location,information);
+				DirType dir = possibleDirections.get(num);*/
+				List<Location> adjacentLocations = directionsToLocations(current_location,information);
 				List<Location> finalLocations = nextMove(r, adjacentLocations);
 				int nextInt = rand.nextInt(finalLocations.size());
 				Location nextLocation = finalLocations.get(nextInt);
-				DirType dir = locationToDirection(nextLocation, current_location);*/
+				DirType dir = locationToDirection(nextLocation, current_location);
 				ourCommands.add(new CommandMove(r, dir));
 			}
 		}
@@ -142,10 +142,10 @@ public class CSS implements PlayerTeam{
 		int currY = currentLocation.getY();
 
 		if(currX == x && (y - 1) == currY){
-			finalDir = DirType.North;
+			finalDir = DirType.South;
 		}
 		else if(currX == x && (y + 1) == currY){
-			finalDir = DirType.South;
+			finalDir = DirType.North;
 		}
 		else if(currY == y && (x - 1) == currX){
 			finalDir = DirType.East;
